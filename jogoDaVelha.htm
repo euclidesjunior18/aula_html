@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JOGO DA VÉIA, MASTER....</title>
+  <style type="text/css">
+  #bot{
+    margin: 0 auto;
+    width: 85px;
+    padding: 0;
+    background-color: transparent; 
+    cursor: pointer;
+  }
+  
+  .conte{
+    width: 700px;
+    position: absolute;
+    margin-left: 323px;
+  }
+
+  table{
+    border-color: red;
+    border-spacing: 1px;
+  }
+
+  .td{
+    font-size: 135px;
+    width: 190px;
+    height: 190px;
+    background-color: rgba(47, 104, 30, 0.83);
+  }
+
+  .dvplacar{
+    height: 170px;
+    width: 200px;
+    background-color: rgba(12, 37, 18, 0.83);
+    display: block;
+    padding: 10px;
+    margin-left: 70px;
+    margin-top: 173px;
+    color: white;
+  }
+
+  #plax, #plae, #plao{
+     height: 50px;
+     width: 100px;
+     background-color: rgba(22, 139, 111, 0.62);
+     display: inline-block;
+     margin: 0 auto;
+     font-size: 40px;
+     text-align: center;
+  }
+
+  .pss{
+    margin-left: 10px;
+  }
+
+  </style>
+  <script type="text/javascript">
+  item = "X";
+  cona = 1;
+  plX = 0;
+  plO = 0;
+  plE = 0;
+  
+  function limpa(num){
+      
+      if (num == "") {
+         num = cona;
+         cona++;
+      }
+ 
+    return num;
+  }
+  
+  function verifica(){
+    
+    c11 = document.getElementById('cel11').innerHTML;
+    c12 = document.getElementById('cel12').innerHTML;
+    c13 = document.getElementById('cel13').innerHTML;
+
+    c21 = document.getElementById('cel21').innerHTML;
+    c22 = document.getElementById('cel22').innerHTML;
+    c23 = document.getElementById('cel23').innerHTML;
+
+    c31 = document.getElementById('cel31').innerHTML;
+    c32 = document.getElementById('cel32').innerHTML;
+    c33 = document.getElementById('cel33').innerHTML;
+
+    c11 = limpa(c11);
+    c12 = limpa(c12);
+    c13 = limpa(c13);
+    
+    c21 = limpa(c21);
+    c22 = limpa(c22);
+    c23 = limpa(c23);
+
+    c31 = limpa(c31);
+    c32 = limpa(c32);
+    c33 = limpa(c33);
+
+    
+    if((c11 == c12 && c12 == c13) || (c21 == c22 && c22 == c23) || (c31 == c32 && c32 == c33) || (c11 == c21 && c21 == c31) || (c12 == c22 && c22 == c32) || (c13 == c23 && c23 == c33) || (c11 == c22 && c22 == c33) || (c31 == c22 && c22 == c13)){
+       alert("Ganhou Filho da Puta....");
+       if (item == "O") {
+          plX++;
+          document.getElementById("plax").innerHTML = plX;
+       }else{
+         plO++;
+         document.getElementById("plao").innerHTML = plO;
+       }
+       novo();
+    }
+  }
+  
+  function jogada(valor){
+        test = document.getElementById(valor).innerHTML;
+        if (test == "") {
+            if(item == "X"){
+               document.getElementById(valor).innerHTML = item;
+               item = "O";
+            }else{
+              document.getElementById(valor).innerHTML = item;
+              item = "X";
+            }
+        }else{
+          alert("Seu burro!!! Não ve que este campo já esta ocupado...");
+        }
+  }
+  
+  function empate(){
+     plE++;
+     document.getElementById("plae").innerHTML = plE;
+  }
+
+  function novo(){
+        item = "X";
+        cona = 1;
+
+        document.getElementById("cel11").innerHTML = '';
+        document.getElementById("cel12").innerHTML = '';
+        document.getElementById("cel13").innerHTML = '';
+
+        document.getElementById("cel21").innerHTML = '';
+        document.getElementById("cel22").innerHTML = '';
+        document.getElementById("cel23").innerHTML = '';
+
+        document.getElementById("cel31").innerHTML = '';
+        document.getElementById("cel32").innerHTML = '';
+        document.getElementById("cel33").innerHTML = ''; 
+    }
+    
+    function trocaFundo(elemento, cor){
+        document.getElementById(elemento).style.background = cor;
+    }
+
+  </script>
+</head>
+<body>
+   <div id="bot">
+   <input type="button" name="botao" value="New Game" onclick="novo(); empate();">
+   </div> 
+   <br>
+   <div class="conte">
+   <table  border="0" align="center">
+     <tr>
+       <td class="td" align="center" id="cel11" onclick="jogada(this.id);verifica();" onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+       <td class="td" align="center" id="cel12" onclick="jogada(this.id);verifica();"  onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+       <td class="td" align="center" id="cel13" onclick="jogada(this.id);verifica();"  onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+     </tr>
+       <td class="td" align="center" id="cel21" onclick="jogada(this.id);verifica();"  onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+       <td class="td" align="center" id="cel22" onclick="jogada(this.id);verifica();"  onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+       <td class="td" align="center" id="cel23" onclick="jogada(this.id);verifica();"  onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+     <tr>
+       <td class="td" align="center" id="cel31" onclick="jogada(this.id);verifica();"  onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+       <td class="td" align="center" id="cel32" onclick="jogada(this.id);verifica();"  onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+       <td class="td" align="center" id="cel33" onclick="jogada(this.id);verifica();"  onmousemove="trocaFundo(this.id, 'rgba(43, 231, 26, 0.82)');" onmouseout="trocaFundo(this.id, 'rgba(47, 104, 30, 0.83)')"></td>
+     </tr>
+   </table>
+   </div>
+   <br/>
+   <div class="dvplacar">
+     <table id="yes" width="200px">
+     <tr>
+       <td> <p class="pss">Placar X</p></td>
+       <td> <div id="plax"></div></td>
+     </tr>
+     <tr>
+       <td> <p class="pss">Empate</p></td>
+       <td><div id="plae"></div></td>
+     </tr>
+     <tr>
+       <td><p class="pss">Placar O</p></td>
+       <td><div id="plao"></div></td>
+     </tr>
+     </table>
+   </div>
+</body>
+</html>
